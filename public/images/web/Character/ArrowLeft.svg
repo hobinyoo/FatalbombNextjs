@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="55.354" height="67.412" viewBox="0 0 55.354 67.412">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: url(#linear-gradient);
+      }
+
+      .cls-2 {
+        fill: url(#linear-gradient-2);
+      }
+
+      .cls-3 {
+        filter: url(#패스_80);
+      }
+    </style>
+    <linearGradient id="linear-gradient" x1="1.157" y1="1.669" x2="0.053" y2="0.21" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#363549"/>
+      <stop offset="0.799" stop-color="#822b6d"/>
+      <stop offset="0.957" stop-color="#8b2a72"/>
+      <stop offset="1" stop-color="#8b2a72"/>
+    </linearGradient>
+    <filter id="패스_80" x="0" y="0" width="55.354" height="67.412" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <linearGradient id="linear-gradient-2" x1="-0.106" y1="0.531" x2="0.952" y2="0.388" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#fceed3" stop-opacity="0"/>
+      <stop offset="0.082" stop-color="#fceed3" stop-opacity="0.204"/>
+      <stop offset="0.204" stop-color="#fceed3" stop-opacity="0.482"/>
+      <stop offset="0.314" stop-color="#fceed3" stop-opacity="0.706"/>
+      <stop offset="0.408" stop-color="#fceed3" stop-opacity="0.867"/>
+      <stop offset="0.482" stop-color="#fceed3" stop-opacity="0.965"/>
+      <stop offset="0.527" stop-color="#fceed3"/>
+      <stop offset="0.562" stop-color="#fceed3" stop-opacity="0.902"/>
+      <stop offset="0.684" stop-color="#fceed3" stop-opacity="0.588"/>
+      <stop offset="0.793" stop-color="#fceed3" stop-opacity="0.333"/>
+      <stop offset="0.884" stop-color="#fceed3" stop-opacity="0.153"/>
+      <stop offset="0.954" stop-color="#fceed3" stop-opacity="0.043"/>
+      <stop offset="0.995" stop-color="#fceed3" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <g id="그룹_75" data-name="그룹 75" transform="translate(46.809 55.975) rotate(180)">
+    <g class="cls-3" transform="matrix(-1, 0, 0, -1, 46.81, 55.98)">
+      <path id="패스_80-2" data-name="패스 80" class="cls-1" d="M2640.561,223.425l-28.7-29.714-8.658,49.412Z" transform="translate(2649.56 249.12) rotate(180)"/>
+    </g>
+    <path id="패스_81" data-name="패스 81" class="cls-2" d="M2603.161,243.534a.448.448,0,0,1-.267-.087.457.457,0,0,1-.178-.447l8.659-49.412a.452.452,0,0,1,.771-.239l28.7,29.715a.456.456,0,0,1-.114.721l-37.36,19.7A.452.452,0,0,1,2603.161,243.534Zm8.951-48.912-8.345,47.622,36.007-18.984Z" transform="translate(-2602.709 -193.211)"/>
+  </g>
+</svg>
