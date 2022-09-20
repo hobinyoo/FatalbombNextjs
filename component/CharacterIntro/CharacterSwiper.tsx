@@ -3,9 +3,9 @@ import styled, { keyframes } from "styled-components";
 import Image from 'next/image';
 import ArrowLeft from "../../public/images/web/Character/ArrowLeft.svg"
 import ArrowRight from "../../public/images/web/Character/ArrowRight.svg"
-import CharacterB from "../../public/images/web/Character/Profile_Character_.svg"
-import CharacterClick from "../../public/images/web/Character/Profile_Character_Click.svg"
-import Character from "../../public/images/web/Character/Image_Idol_Profile.png"
+import CharacterIodolImage from "../../public/images/web/Character/Character_Box.png"
+import CharacterHover from "../../public/images/web/Character/Character_Tanker_Hover.png"
+
 
 // Import Swiper React components
 import SwiperCore, { Navigation, Pagination, Scrollbar, A11y, EffectCoverflow, Autoplay, Controller } from 'swiper';
@@ -40,7 +40,7 @@ const Characterswiper = () => {
     useEffect(() => {
         if (!swiperSetting) {
             setSwiperSetting({
-                spaceBetween: 10,
+                spaceBetween: 0,
                 loop: true,
                 navigation: {
                     nextEl: nextRef.current,
@@ -55,7 +55,7 @@ const Characterswiper = () => {
                     setswiperIndex(swiper.realIndex + 1)
                 },
                 scrollbar: { draggable: true, el: null },
-                slidesPerView: 3,
+                slidesPerView: 4,
                 onBeforeInit: (swiper: SwiperCore) => {
                     if (typeof swiper.params.navigation !== 'boolean') {
                         if (swiper.params.navigation) {
@@ -95,10 +95,26 @@ const Characterswiper = () => {
 
                 {swiperSetting && (
                     <Swiper {...swiperSetting}>
-                        <SwiperSlide><Montainer >1</Montainer></SwiperSlide>
-                        <SwiperSlide><Montainer >2</Montainer></SwiperSlide>
-                        <SwiperSlide><Montainer >3</Montainer></SwiperSlide>
-                        <SwiperSlide><Montainer >4</Montainer></SwiperSlide>
+                        <SwiperSlide>
+                            <CharacterContainer>
+                                <CharacterIdol />
+                            </CharacterContainer>
+                        </SwiperSlide>
+                        <SwiperSlide>
+                            <CharacterContainer >
+                                <CharacterIdol />
+                            </CharacterContainer>
+                        </SwiperSlide>
+                        <SwiperSlide>
+                            <CharacterContainer >
+                                <CharacterIdol />
+                            </CharacterContainer>
+                        </SwiperSlide>
+                        <SwiperSlide>
+                            <CharacterContainer>
+                                <CharacterIdol />
+                            </CharacterContainer>
+                        </SwiperSlide>
                     </Swiper>
                 )}
                 {/* <div className="swiper-button-prev"></div>
@@ -148,17 +164,6 @@ const Characterswiper = () => {
     )
 }
 
-const Montainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: black;
-  font-weight: bold;
-  width: 250px;
-  height: 250px;
-  background-color: gray;
-  border-radius: 40px;
-  `
 
 
 const StyledRoot = styled.div`
@@ -169,31 +174,14 @@ const StyledRoot = styled.div`
 	.swiper {
     		&-wrapper,
     		&-container {
-      			width: 770px;
-                height: 250px;
+      			width: 960px;
+                height: 344px;
       			margin: 0;
-                
+                //   &:hover {
+                //     width: 879px;
+                //     height: 344px;
+                // }
     		}
-            // &-button-prev {
-            //     background-image: url('images/web/Character/ArrowLeft.svg');
-            //     background-size: cover;
-            //     background-position: center center;
-            //     width: 30px;
-            //     height: 40px;
-            // }
-            // &-button-next {
-            //     background-image: url('images/web/Character/ArrowRight.svg');
-            //     background-size: cover;
-            //     background-position: center center;
-            //     width: 30px;
-            //     height: 40px;
-
-            // }
-            // &-button-next::after,
-            // &-button-prev::after {
-            // display: none;
-            // }
-  	}
 `;
 
 const ArrowBtn = styled.button`
@@ -202,40 +190,63 @@ const ArrowBtn = styled.button`
     box-shadow:none; 
     overflow:visible;
     cursor:pointer;
+    margin-top: -34px;
 `
+
+const CharacterContainer = styled.div`
+  display: flex;
+//   justify-content: center;
+//   align-items: center;
+  color: black;
+  font-weight: bold;
+  width: 216px;
+  height: 310px;
+//   background-color: gray;
+  position: relative;
+  cursor: pointer;
+  &:hover {
+    transition: 250ms all;
+    width: 240px;
+    height: 344px;
+    z-index: 1;
+    }
+  `
 
 const CharacterIdol = styled.div`
  position: absolute;
     z-index: 1;
-    background-image: url('images/web/Character/Image_Idol_Profile.png');
+    background-image: url('images/web/Character/Character_Box.png');
     background-size: cover;
     background-position: center center;
     width: 216px;
     height: 310px;
     &:hover {
         transition: 250ms all;
-        background-image: url('images/web/Character/Image_Idol_Profile.png');
+        background-image: url('images/web/Character/Character_Tanker_Hover.png');
         background-size: cover;
         background-position: center center;
         width: 240px;
         height: 344px;
         z-index: 1;
+    }
 `
-const CharacterBox = styled.div`
- width: 216px;
- height: 310px;
- position: relative;
- cursor:pointer;
- background-image: url('images/web/Character/Profile_Character.svg');
- background-size: cover;
- background-position: center center;
- &:hover {
-    transition: 250ms all;
-    background-image: url('images/web/Character/Profile_Character_shadow.svg');
-    background-size: cover;
-    background-position: center center;
-    width: 240px;
-    height: 344px;
-    z-index: 1;
-`
+
+// const CharacterBox = styled.div`
+//  width: 216px;
+//  height: 310px;
+//  position: relative;
+//  cursor:pointer;
+//  background-image: url('images/web/Character/Profile_Character.svg');
+//  background-size: cover;
+//  background-position: center center;
+//  &:hover {
+//     transition: 250ms all;
+//     background-image: url('images/web/Character/Profile_Character_shadow.svg');
+//     background-size: cover;
+//     background-position: center center;
+//     width: 240px;
+//     height: 344px;
+//     z-index: 1;
+// `
+
 export default Characterswiper
