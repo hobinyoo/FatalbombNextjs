@@ -7,9 +7,10 @@ import Characterswiper from "./CharacterSwiper"
 import DPSIcon from "../../public/images/web/Character/Icon_DPS.png"
 import HealerIcon from "../../public/images/web/Character/Icon_Healer.png"
 import TankerIcon from "../../public/images/web/Character/Icon_Tanker.png"
-import SelectedDPSIcon from "../../public/images/web/Character/Icon_DPS_2.png"
-import SelectedHealerIcon from "../../public/images/web/Character/Icon_Healer_2.png"
-import SelectedTankerIcon from "../../public/images/web/Character/Icon_Tanker_2.png"
+import SelectedDPSIcon from "../../public/images/web/Character/Icon_DPS_select.png"
+import SelectedHealerIcon from "../../public/images/web/Character/Icon_Healer_select.png"
+import SelectedTankerIcon from "../../public/images/web/Character/Icon_Tanker_select.png"
+
 import CharacterSkillInfo from "../../public/images/web/Character/Character_Skill_Info.svg"
 
 //redux
@@ -25,6 +26,8 @@ export default function CharacterInfo() {
     const clickedCharcter = useAppSelector((state: RootState) => state.clickedCharcter.value);
     const CHARCTERNAME = ["IDOL", "NURSE", "ENGINEER", "COURIER"]
 
+
+
     return (
         <>
             <CharacterIntroText>캐릭터 소개</CharacterIntroText>
@@ -36,24 +39,45 @@ export default function CharacterInfo() {
             </CharacterntroExplain>
 
             <IconWrapper>
-                <Image
-                    src={DPSIcon}
-                    width={54}
-                    height={54}
-                    alt="DPSIcon"
-                />
-                <Image
-                    src={TankerIcon}
-                    width={54}
-                    height={54}
-                    alt="TankerIcon"
-                />
-                <Image
-                    src={HealerIcon}
-                    width={54}
-                    height={54}
-                    alt="HealerIcon"
-                />
+                {clickedCharcter === "IDOL" || clickedCharcter === "COURIER" ?
+                    <Image
+                        src={SelectedDPSIcon}
+                        width={54}
+                        height={54}
+                        alt="SelectedDPSIcon"
+                    /> :
+                    <Image
+                        src={DPSIcon}
+                        width={54}
+                        height={54}
+                        alt="DPSIcon"
+                    />}
+
+                {clickedCharcter === "NURSE" ?
+                    <Image
+                        src={SelectedHealerIcon}
+                        width={54}
+                        height={54}
+                        alt="SelectedHealerIcon"
+                    /> : <Image
+                        src={HealerIcon}
+                        width={54}
+                        height={54}
+                        alt="HealerIcon"
+                    />}
+
+                {clickedCharcter === "ENGINEER" ?
+                    <Image
+                        src={SelectedTankerIcon}
+                        width={54}
+                        height={54}
+                        alt="SelectedTankerIcon"
+                    /> : <Image
+                        src={TankerIcon}
+                        width={54}
+                        height={54}
+                        alt="TankerIcon"
+                    />}
             </IconWrapper>
 
             <CharacterName>

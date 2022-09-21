@@ -187,15 +187,15 @@ const ArrowBtn = styled.button`
 
 //margin-left: 10.5px 208-187/2 
 const CharacterContainer = styled.div`
-  position: relative;
-  width: 187px;
-  height: 320px;
-  cursor: pointer;
-  margin-left: 10.5px; 
-  &:hover {
-    transition: 250ms all;
-    width: 208px;
-    }
+    position: relative;
+    width: 187px;
+    height: 320px;
+    cursor: pointer;
+    margin-left: 10.5px; 
+    &:hover {
+        transition: 200ms all;
+        width: 208px;
+        }
   `
 
 const CharacterIdol = styled.div`
@@ -210,7 +210,7 @@ const CharacterIdol = styled.div`
     background-position: center center;
     margin-top: 7px;
     &:hover {
-        transition: 250ms all;
+        transition: 200ms all;
         background-image: url('images/web/Character/Charcter_Engineer.png');
         background-size: cover;
         background-position: center center;
