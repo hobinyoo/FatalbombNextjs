@@ -4,11 +4,16 @@ import styled from 'styled-components';
 
 //캐릭터 소개
 import Characterswiper from "./CharacterSwiper"
-import DPSIcon from "../../public/images/web/Character/Icon_DPS.svg"
-import HealerIcon from "../../public/images/web/Character/Icon_Healer.svg"
-import TankerIcon from "../../public/images/web/Character/Icon_Tanker.svg"
+import DPSIcon from "../../public/images/web/Character/Icon_DPS.png"
+import HealerIcon from "../../public/images/web/Character/Icon_Healer.png"
+import TankerIcon from "../../public/images/web/Character/Icon_Tanker.png"
+import SelectedDPSIcon from "../../public/images/web/Character/Icon_DPS_2.png"
+import SelectedHealerIcon from "../../public/images/web/Character/Icon_Healer_2.png"
+import SelectedTankerIcon from "../../public/images/web/Character/Icon_Tanker_2.png"
 import CharacterSkillInfo from "../../public/images/web/Character/Character_Skill_Info.svg"
 
+//redux
+import { useAppSelector, RootState } from '../../store'
 
 export default function CharacterInfo() {
 
@@ -17,11 +22,14 @@ export default function CharacterInfo() {
     const onMouseEnter = () => setIsHovered(true);
     const onMouseLeave = () => setIsHovered(false);
 
+    const clickedCharcter = useAppSelector((state: RootState) => state.clickedCharcter.value);
+    const CHARCTERNAME = ["IDOL", "NURSE", "ENGINEER", "COURIER"]
 
     return (
         <>
             <CharacterIntroText>캐릭터 소개</CharacterIntroText>
             <CharacterntroTextLine />
+
             <CharacterntroExplain>
                 지하도시에서 유일하게 폭탄을 만드는 천재 기술자. 스페셜한 폭탄이 필요하다면 그를 찾아가세요.
                 엔지니어가 곧 클랜의 무기 입니다. 엔지니어에 관한 배경 및 직업 내용
@@ -46,10 +54,12 @@ export default function CharacterInfo() {
                     height={54}
                     alt="HealerIcon"
                 />
-
             </IconWrapper>
 
-            <CharacterName>TANKER</CharacterName>
+            <CharacterName>
+                {clickedCharcter}
+            </CharacterName>
+
             <Characterswiper />
             <CharacterSkillInfoWrapper>
                 <CharacterSkillInfoInner>
@@ -121,7 +131,8 @@ const IconWrapper = styled.div`
     margin-right: auto;
 `
 const CharacterName = styled.div`
-    width: 117px;
+    width: 150px;
+    text-align: center;
     height: 36px;
     margin-top: 24px;
     margin-left: auto;

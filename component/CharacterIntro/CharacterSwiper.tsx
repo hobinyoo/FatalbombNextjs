@@ -12,32 +12,27 @@ import 'swiper/components/navigation/navigation.min.css';
 import 'swiper/components/pagination/pagination.min.css';
 import 'swiper/swiper.min.css';
 import 'swiper/swiper-bundle.min.css';
-import next from "next";
-import { useRouter } from 'next/router'
 
-// //redux
-// import { useAppDispatch } from "../../../../redux/hook"
-// import { overlayAnyIndex } from "../../../../redux/features/overlayAnySlice"
+//redux
+import { useAppDispatch } from '../../store'
+import { clickedCharcter } from "../../store/features/clickedCharcterSlice"
+import { useAppSelector, RootState } from '../../store'
 
 SwiperCore.use([Navigation, Scrollbar]);
 
 
 const Characterswiper = () => {
 
+    const dispatch = useAppDispatch();
     const prevRef = useRef<HTMLButtonElement>(null);
     const nextRef = useRef<HTMLButtonElement>(null);
 
     const [swiperSetting, setSwiperSetting] = useState<Swiper | null>(null);
-    // const [swiperClick, setSwiperClick] = useState<HTMLElement | null>(null);
-  
-    //캐릭터 선택
-    const [isHovering, setIsHovered] = useState<boolean>(false);
-    const onMouseEnter = () => setIsHovered(true);
-    const onMouseLeave = () => setIsHovered(false);
 
 
-    //캐릭터 slide click 접근
+    // const swiper = useRef() as any;
 
+    const selectedCharcter = useAppSelector((state: RootState) => state.clickedCharcter.value);
 
     useEffect(() => {
         if (!swiperSetting) {
@@ -48,10 +43,11 @@ const Characterswiper = () => {
                     nextEl: nextRef.current,
                     prevEl: prevRef.current,
                 },
-
                 // swiper가 제공해주는 onClick 이벤트 리스너
-                onClick(swiper: SwiperCore): void | undefined {
-                    console.log(swiper.clickedSlide.id)
+                onClick: (swiper: SwiperCore): void => {
+                    const characterName = swiper.clickedSlide.id
+
+                    dispatch(clickedCharcter(characterName))
                 },
                 scrollbar: { draggable: true, el: null },
                 slidesPerView: 4,
@@ -69,6 +65,7 @@ const Characterswiper = () => {
     }, [swiperSetting]);
 
 
+
     return (
         <>
             <StyledRoot>
@@ -83,25 +80,47 @@ const Characterswiper = () => {
 
                 {swiperSetting && (
                     <Swiper {...swiperSetting}>
+
                         <SwiperSlide id="IDOL">
-                            <CharacterContainer>
-                                <CharacterIdol />
-                            </CharacterContainer>
+                            {selectedCharcter === "IDOL" ?
+                                <SelectedcharcterContainer>
+                                    <Selectedcharcter />
+                                </SelectedcharcterContainer> :
+                                <CharacterContainer>
+                                    <CharacterIdol />
+                                </CharacterContainer>
+                            }
                         </SwiperSlide>
+
                         <SwiperSlide id="NURSE">
-                            <CharacterContainer>
-                                <CharacterIdol />
-                            </CharacterContainer>
+                            {selectedCharcter === "NURSE" ?
+                                <SelectedcharcterContainer>
+                                    <Selectedcharcter />
+                                </SelectedcharcterContainer> :
+                                <CharacterContainer>
+                                    <CharacterIdol />
+                                </CharacterContainer>
+                            }
                         </SwiperSlide>
                         <SwiperSlide id="ENGINEER">
-                            <CharacterContainer>
-                                <CharacterIdol />
-                            </CharacterContainer>
+                            {selectedCharcter === "ENGINEER" ?
+                                <SelectedcharcterContainer>
+                                    <Selectedcharcter />
+                                </SelectedcharcterContainer> :
+                                <CharacterContainer>
+                                    <CharacterIdol />
+                                </CharacterContainer>
+                            }
                         </SwiperSlide>
-                        <SwiperSlide id="NADA">
-                            <CharacterContainer>
-                                <CharacterIdol />
-                            </CharacterContainer>
+                        <SwiperSlide id="COURIER">
+                            {selectedCharcter === "COURIER" ?
+                                <SelectedcharcterContainer>
+                                    <Selectedcharcter />
+                                </SelectedcharcterContainer> :
+                                <CharacterContainer>
+                                    <CharacterIdol />
+                                </CharacterContainer>
+                            }
                         </SwiperSlide>
                     </Swiper>
                 )}
@@ -121,6 +140,28 @@ const Characterswiper = () => {
 
 
 
+const Selectedcharcter = styled.div`
+    display: flex;
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    position: absolute;
+    z-index: 1;
+    background-image: url('images/web/Character/Charcter_Engineer.png');
+    background-size: cover;
+    background-position: center center;
+    margin-top: 7px;     
+    transform: translate(-5.25px, -7px)
+
+`
+
+const SelectedcharcterContainer = styled.div`
+    position: relative;
+    width: 208px;
+    height: 320px;
+    cursor: pointer;
+    margin-left: 10.5px; 
+`
 const StyledRoot = styled.div`
     width: 100%;
     display: flex;
@@ -151,7 +192,6 @@ const CharacterContainer = styled.div`
   height: 320px;
   cursor: pointer;
   margin-left: 10.5px; 
-//   background-color: gray;
   &:hover {
     transition: 250ms all;
     width: 208px;
