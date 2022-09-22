@@ -32,8 +32,13 @@ import TrailerTVScreen from "../public/images/web/Trailer/Trailer_TV_Screen.svg"
 import TrailerTV from "../public/images/web/Trailer/Trailer_TV.svg"
 import TrailerSwiper from "../component/Trailer/TrailerSwiper"
 
+//redux
+import { useAppSelector, RootState } from '../store'
+
 export default function home() {
 
+    const stillImage = useAppSelector((state: RootState) => state.clickedCharcter.stillImage);
+    console.log(stillImage)
     //사전예약버튼 hover
     const [isHovering, setIsHovered] = useState<boolean>(false);
     const onMouseEnter = () => setIsHovered(true);
@@ -147,7 +152,7 @@ export default function home() {
                 </CharacterIntroContainer>
 
                 <StillImageContainer id="stillimage">
-
+          
                     <div className="stillImage__text">스틸이미지</div>
                     <div className="stillImage__container">
                         <Image
@@ -157,6 +162,7 @@ export default function home() {
                             alt="StillImageEx"
                         />
                     </div>
+                    <div className="stillImage__text">{stillImage}</div>
                     <StillImageSwiper />
                 </StillImageContainer>
 

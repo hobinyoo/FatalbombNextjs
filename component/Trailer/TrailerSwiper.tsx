@@ -77,20 +77,20 @@ const Characterswiper = () => {
         <>
 
             {swiperSetting &&
-                    <StyledRoot>
+                <StyledRoot>
 
-                        <Swiper {...swiperSetting} onInit={onInit} >
-                            {StillImageSlider.map(() => {
-                                return (
-                                    <SwiperSlide>
-                                        <StillImageBox />
-                                    </SwiperSlide>
-                                )
-                            })}
+                    <Swiper {...swiperSetting} onInit={onInit} >
+                        {StillImageSlider.map(() => {
+                            return (
+                                <SwiperSlide>
+                                    <StillImageBox />
+                                </SwiperSlide>
+                            )
+                        })}
 
-                        </Swiper>
+                    </Swiper>
 
-                    </StyledRoot>
+                </StyledRoot>
             }
 
         </>
