@@ -4,6 +4,7 @@ import styled, { keyframes } from "styled-components";
 
 //캐릭터 소개
 import Characterswiper from "./CharacterSwiper"
+import CharacterSwiperMobile from "./CharacterSwiperMobile"
 import DPSIcon from "../../public/images/web/Character/Icon_DPS.png"
 import HealerIcon from "../../public/images/web/Character/Icon_Healer.png"
 import TankerIcon from "../../public/images/web/Character/Icon_Tanker.png"
@@ -12,13 +13,19 @@ import SelectedHealerIcon from "../../public/images/web/Character/Icon_Healer_se
 import SelectedTankerIcon from "../../public/images/web/Character/Icon_Tanker_select.png"
 
 import CharacterSkillInfo from "../../public/images/web/Character/Character_Skill_Info.svg"
-
+import CharacterSkillInfoMobile from "../../public/images/web/Character/Box_CharacterSKillInfo_Mobile.svg"
 //redux
 import { useAppSelector, RootState } from '../../store'
+
+import ImageFatal from "../public/images/web/Introduction/Image_Fatal_BI.png"
+
+//Mobile layout
+import { SCREEN_SIZE } from '../../constants/screenSize';
 
 interface ClickedCharcterProps {
     clickedCharcter: string;
 }
+
 export default function CharacterInfo() {
 
     //사전예약버튼 hover
@@ -28,6 +35,21 @@ export default function CharacterInfo() {
 
     const clickedCharcter = useAppSelector((state: RootState) => state.clickedCharcter.value);
     const CHARCTERNAME = ["IDOL", "NURSE", "ENGINEER", "COURIER"]
+
+    //화면 resize
+    const [mobileResize, setMobileResize] = useState<number>(0);
+
+    const handleResize = () => {
+        setMobileResize(window.innerWidth);
+    };
+
+
+    useEffect(() => {
+        window.addEventListener("resize", handleResize);
+        return () => {
+            window.removeEventListener("resize", handleResize);
+        };
+    }, []);
 
     return (
         <>
@@ -41,53 +63,97 @@ export default function CharacterInfo() {
                             clickedCharcter === "COURIER" ? <COURIER clickedCharcter={clickedCharcter}>"지하도시의 택배기사 그렉. 싱크홀이 없던 예나 지금이나 택배기사는 만인에게 환영받는 존재다. 그렉이 취급하지 않는 물건이란 없다."</COURIER> : null}
             </CharacterntroExplain>
 
-            <IconWrapper>
-                {clickedCharcter === "IDOL" || clickedCharcter === "COURIER" ?
-                    <Image
-                        src={SelectedDPSIcon}
-                        width={54}
-                        height={54}
-                        alt="SelectedDPSIcon"
-                    /> :
-                    <Image
-                        src={DPSIcon}
-                        width={54}
-                        height={54}
-                        alt="DPSIcon"
-                    />}
+            {mobileResize <= 480 ?
+                <IconWrapper>
+                    {clickedCharcter === "IDOL" || clickedCharcter === "COURIER" ?
+                        <Image
+                            src={SelectedDPSIcon}
+                            width={36}
+                            height={36}
+                            alt="SelectedDPSIcon"
+                        /> :
+                        <Image
+                            src={DPSIcon}
+                            width={42}
+                            height={42}
+                            alt="DPSIcon"
+                        />}
 
-                {clickedCharcter === "NURSE" ?
-                    <Image
-                        src={SelectedHealerIcon}
-                        width={54}
-                        height={54}
-                        alt="SelectedHealerIcon"
-                    /> : <Image
-                        src={HealerIcon}
-                        width={54}
-                        height={54}
-                        alt="HealerIcon"
-                    />}
+                    {clickedCharcter === "NURSE" ?
+                        <Image
+                            src={SelectedHealerIcon}
+                            width={42}
+                            height={42}
+                            alt="SelectedHealerIcon"
+                        /> : <Image
+                            src={HealerIcon}
+                            width={42}
+                            height={42}
+                            alt="HealerIcon"
+                        />}
 
-                {clickedCharcter === "ENGINEER" ?
-                    <Image
-                        src={SelectedTankerIcon}
-                        width={54}
-                        height={54}
-                        alt="SelectedTankerIcon"
-                    /> : <Image
-                        src={TankerIcon}
-                        width={54}
-                        height={54}
-                        alt="TankerIcon"
-                    />}
-            </IconWrapper>
+                    {clickedCharcter === "ENGINEER" ?
+                        <Image
+                            src={SelectedTankerIcon}
+                            width={42}
+                            height={42}
+                            alt="SelectedTankerIcon"
+                        /> : <Image
+                            src={TankerIcon}
+                            width={42}
+                            height={42}
+                            alt="TankerIcon"
+                        />}
+                </IconWrapper>
+                : <IconWrapper>
+                    {clickedCharcter === "IDOL" || clickedCharcter === "COURIER" ?
+                        <Image
+                            src={SelectedDPSIcon}
+                            width={54}
+                            height={54}
+                            alt="SelectedDPSIcon"
+                        /> :
+                        <Image
+                            src={DPSIcon}
+                            width={54}
+                            height={54}
+                            alt="DPSIcon"
+                        />}
+
+                    {clickedCharcter === "NURSE" ?
+                        <Image
+                            src={SelectedHealerIcon}
+                            width={54}
+                            height={54}
+                            alt="SelectedHealerIcon"
+                        /> : <Image
+                            src={HealerIcon}
+                            width={54}
+                            height={54}
+                            alt="HealerIcon"
+                        />}
+
+                    {clickedCharcter === "ENGINEER" ?
+                        <Image
+                            src={SelectedTankerIcon}
+                            width={54}
+                            height={54}
+                            alt="SelectedTankerIcon"
+                        /> : <Image
+                            src={TankerIcon}
+                            width={54}
+                            height={54}
+                            alt="TankerIcon"
+                        />}
+                </IconWrapper>
+            }
+
 
             <CharacterName>
                 {clickedCharcter}
             </CharacterName>
+            {mobileResize <= 480 ? <CharacterSwiperMobile /> : <Characterswiper />}
 
-            <Characterswiper />
             <CharacterSkillInfoWrapper>
                 <CharacterSkillInfoInner>
                     <div className="skillInfo__textSection">
@@ -117,17 +183,25 @@ export default function CharacterInfo() {
                     </div>
                 </CharacterSkillInfoInner>
 
+                {mobileResize <= 480 ?
+                    <Image
+                        src={CharacterSkillInfoMobile}
+                        width={328}
+                        height={258}
+                        alt="CharacterSkillInfoMobile"
+                    /> :
+                    <Image
+                        src={CharacterSkillInfo}
+                        width={1206}
+                        height={232}
+                        alt="CharacterSkillInfo"
+                    />}
 
-                <Image
-                    src={CharacterSkillInfo}
-                    width={1206}
-                    height={232}
-                    alt="CharacterSkillInfo"
-                />
             </CharacterSkillInfoWrapper>
         </>
     )
 }
+
 const fadeIn = keyframes`
   from {
     opacity: 0;
@@ -136,17 +210,18 @@ const fadeIn = keyframes`
     opacity: 0.8;
   }
 `;
+
 const ENGINEER = styled.div<ClickedCharcterProps>`
-animation: ${(props) => (props.clickedCharcter === "ENGINEER" ? fadeIn : "")} 0.8s;
+    animation: ${(props) => (props.clickedCharcter === "ENGINEER" ? fadeIn : "")} 0.8s;
 `
 const NURSE = styled.div<ClickedCharcterProps>`
-animation: ${(props) => (props.clickedCharcter === "NURSE" ? fadeIn : "")} 0.8s;
+    animation: ${(props) => (props.clickedCharcter === "NURSE" ? fadeIn : "")} 0.8s;
 `
 const IDOL = styled.div<ClickedCharcterProps>`
-animation: ${(props) => (props.clickedCharcter === "IDOL" ? fadeIn : "")} 0.8s;
+    animation: ${(props) => (props.clickedCharcter === "IDOL" ? fadeIn : "")} 0.8s;
 `
 const COURIER = styled.div<ClickedCharcterProps>`
-animation: ${(props) => (props.clickedCharcter === "COURIER" ? fadeIn : "")} 0.8s;
+    animation: ${(props) => (props.clickedCharcter === "COURIER" ? fadeIn : "")} 0.8s;
 `
 const CharacterIntroText = styled.div`
     text-align: center;
@@ -154,6 +229,10 @@ const CharacterIntroText = styled.div`
     letter-spacing: 0px;
     color: #FFFFFF;
     opacity: 0.9;
+    @media screen and (max-width: ${SCREEN_SIZE.WIDTH.MOBILE}) {
+        font: normal normal bold 22px NanumSquare_ac;
+        margin-top: 62px;
+    }
 `
 const CharacterntroTextLine = styled.div`
     width: 588px;
@@ -161,7 +240,12 @@ const CharacterntroTextLine = styled.div`
     display: block;
     margin: auto;
     background: transparent radial-gradient(closest-side at 50% 50%, #FFFAB7 0%, #FFFAB709 100%, #FFFAB700 100%) 0% 0% no-repeat padding-box;
-    opacity: 0.52;
+    opacity: 0.5;
+    @media screen and (max-width: ${SCREEN_SIZE.WIDTH.MOBILE}) {
+        width: 236px;
+        height: 8px;
+        opacity: 0.8;
+    }
 `
 
 const CharacterntroExplain = styled.div<ClickedCharcterProps>`
@@ -175,7 +259,12 @@ const CharacterntroExplain = styled.div<ClickedCharcterProps>`
     letter-spacing: 0px;
     color: #FFFFFF;
     opacity: 0.8;
-    // animation: ${(props) => (props.clickedCharcter === "ENGINEER" ? fadeIn : props.clickedCharcter === "IDOL" ? fadeIn : "")} 0.8s;
+    @media screen and (max-width: ${SCREEN_SIZE.WIDTH.MOBILE}) {
+        width: 278px;
+        height: 66px;
+        margin-top: 25px;
+    }
+
 `
 
 const IconWrapper = styled.div`
@@ -185,6 +274,11 @@ const IconWrapper = styled.div`
     margin-top: 29px;
     margin-left: auto;
     margin-right: auto;
+    @media screen and (max-width: ${SCREEN_SIZE.WIDTH.MOBILE}) {
+        margin-top: 50px;
+        width: 132px;
+    }
+
 `
 const CharacterName = styled.div`
     width: 150px;
@@ -197,6 +291,10 @@ const CharacterName = styled.div`
     letter-spacing: 0px;
     color: #FFFFFF;
     opacity: 0.8;
+    @media screen and (max-width: ${SCREEN_SIZE.WIDTH.MOBILE}) {
+        margin-top: 22px;
+        font: normal normal 300 24px CPMono_v07;
+    }
 `
 
 const CharacterSkillInfoWrapper = styled.div`
@@ -206,6 +304,11 @@ const CharacterSkillInfoWrapper = styled.div`
     margin-left: auto;
     margin-right: auto;
     positiom: relative;
+    @media screen and (max-width: ${SCREEN_SIZE.WIDTH.MOBILE}) {
+        margin-top: 34px;
+        width: 326px;
+        height: 258px;
+    }
 `
 
 const CharacterSkillInfoInner = styled.div`
@@ -254,6 +357,43 @@ const CharacterSkillInfoInner = styled.div`
           margin-right: 88px;
           margin-top: 68px;
         }
+
+    @media screen and (max-width: ${SCREEN_SIZE.WIDTH.MOBILE}) {
+        width: 326px;
+        height: 258px;
+        display: flex;
+        flex-direction: column;
+        .skillInfo__textSection {
+            width: 278px;
+            margin-top: 24px;
+            margin-left: 24px;
+
+            .skillInfo__skill {
+                width: 278px;
+                height: 39px;
+                font: normal normal 800 22px NanumSquare_ac;
+                .skillInfo__skillName {
+                    font: normal normal normal 16px NanumSquare_ac;
+                    margin-left: 18px;
+                }
+            }
+
+        .skillInfo__skillExplain {
+            margin-top: 29px;
+            font: normal normal 300 15px NanumSquare_ac;
+            }
+        }
+
+        .skillInfo_skillBox {
+          width: 278px;
+          display: flex;
+          justify-content: space-between;
+          margin-left: 24px;
+          padding-bottom: 24px;
+          margin-right: 0px;
+          margin-top: 0px;
+        }
+    }
 `
 const SkillInfoBox = styled.div`
     border: 3px solid #FFFFD100;
@@ -262,4 +402,8 @@ const SkillInfoBox = styled.div`
     filter: blur(1px);
     width: 89px;
     height: 89px;
+    @media screen and (max-width: ${SCREEN_SIZE.WIDTH.MOBILE}) {
+        width: 58px;
+        height: 58px;
+    }
 `

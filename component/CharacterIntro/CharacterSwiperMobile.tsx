@@ -31,6 +31,20 @@ const Characterswiper = () => {
 
     const [swiperSetting, setSwiperSetting] = useState<Swiper | null>(null);
 
+    //화면 resize
+    const [mobileResize, setMobileResize] = useState<number>(0);
+
+    const handleResize = () => {
+        setMobileResize(window.innerWidth);
+    };
+
+
+    useEffect(() => {
+        window.addEventListener("resize", handleResize);
+        return () => {
+            window.removeEventListener("resize", handleResize);
+        };
+    }, [mobileResize]);
 
     // const swiper = useRef() as any;
 
@@ -52,7 +66,7 @@ const Characterswiper = () => {
                     dispatch(clickedCharcter(characterName))
                 },
                 scrollbar: { draggable: true, el: null },
-                slidesPerView: 4,
+                slidesPerView: 3,
                 onBeforeInit: (swiper: SwiperCore) => {
                     if (typeof swiper.params.navigation !== 'boolean') {
                         if (swiper.params.navigation) {
@@ -140,27 +154,6 @@ const Characterswiper = () => {
 
 
 
-const Selectedcharcter = styled.div`
-    display: flex;
-    width: 100%;
-    height: 100%;
-    margin: auto;
-    position: absolute;
-    z-index: 1;
-    background-image: url('images/web/Character/Charcter_Engineer.png');
-    background-size: cover;
-    background-position: center center;
-    margin-top: 7px;     
-    transform: translate(-5.25px, -7px)
-
-`
-const SelectedcharcterContainer = styled.div`
-    position: relative;
-    width: 208px;
-    height: 320px;
-    cursor: pointer;
-    margin-left: 10.5px; 
-`
 const StyledRoot = styled.div`
     width: 100%;
     display: flex;
@@ -173,8 +166,8 @@ const StyledRoot = styled.div`
                 height: 320px;
       			margin: 0;
                   @media screen and (max-width: ${SCREEN_SIZE.WIDTH.MOBILE}) {
-                    width: 208px;
-                    height: 320px;
+                    width: 300px;
+                    height: 146px;
                 }
     		}
 `;
@@ -191,13 +184,14 @@ const ArrowBtn = styled.button`
 //margin-left: 10.5px 208-187/2 
 const CharacterContainer = styled.div`
     position: relative;
-    width: 187px;
-    height: 320px;
+    width: 70px;
+    height: 120px;
     cursor: pointer;
     margin-left: 10.5px; 
     &:hover {
         transition: 200ms all;
-        width: 208px;
+        width: 70px;
+        height: 120px;
         }
   `
 
@@ -217,13 +211,34 @@ const CharacterIdol = styled.div`
         background-image: url('images/web/Character/Charcter_Engineer.png');
         background-size: cover;
         background-position: center center;
-        width: 208px;
-        height: 320px;
+        width: 70px;
+        height: 120px;
         z-index: 1;
         transform: translate(-5.25px, -7px)
       }
     
 `
+const SelectedcharcterContainer = styled.div`
+    position: relative;
+    width: 75px;
+    height: 120px;
+    cursor: pointer;
+    margin-left: 10.5px; 
+`
+const Selectedcharcter = styled.div`
+    display: flex;
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    position: absolute;
+    z-index: 1;
+    background-image: url('images/web/Character/Charcter_Engineer.png');
+    background-size: cover;
+    background-position: center center;
+    margin-top: 7px;     
+    transform: translate(-5.25px, -7px)
+`
+
 
 
 export default Characterswiper

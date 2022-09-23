@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="327" height="259.303" viewBox="0 0 327 259.303">
+  <defs>
+    <linearGradient id="linear-gradient" x1="-0.199" y1="-0.18" x2="1.201" y2="1.183" gradientUnits="objectBoundingBox">
+      <stop offset="0.074" stop-color="#8b2a72"/>
+      <stop offset="0.219" stop-color="#722d65" stop-opacity="0.706"/>
+      <stop offset="0.372" stop-color="#5c305b" stop-opacity="0.455"/>
+      <stop offset="0.527" stop-color="#4b3253" stop-opacity="0.255"/>
+      <stop offset="0.683" stop-color="#3f334d" stop-opacity="0.114"/>
+      <stop offset="0.84" stop-color="#38344a" stop-opacity="0.027"/>
+      <stop offset="1" stop-color="#363549" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-2" x1="-0.041" y1="-0.318" x2="0.863" y2="1.792" xlink:href="#linear-gradient"/>
+    <linearGradient id="linear-gradient-3" x1="-0.023" y1="0.979" x2="1.023" y2="0.021" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#fceed3" stop-opacity="0"/>
+      <stop offset="0.045" stop-color="#fceed3" stop-opacity="0.204"/>
+      <stop offset="0.113" stop-color="#fceed3" stop-opacity="0.482"/>
+      <stop offset="0.174" stop-color="#fceed3" stop-opacity="0.706"/>
+      <stop offset="0.226" stop-color="#fceed3" stop-opacity="0.867"/>
+      <stop offset="0.266" stop-color="#fceed3" stop-opacity="0.965"/>
+      <stop offset="0.291" stop-color="#fceed3"/>
+      <stop offset="0.344" stop-color="#fceed3" stop-opacity="0.902"/>
+      <stop offset="0.528" stop-color="#fceed3" stop-opacity="0.588"/>
+      <stop offset="0.692" stop-color="#fceed3" stop-opacity="0.333"/>
+      <stop offset="0.829" stop-color="#fceed3" stop-opacity="0.153"/>
+      <stop offset="0.934" stop-color="#fceed3" stop-opacity="0.043"/>
+      <stop offset="0.995" stop-color="#fceed3" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-4" x1="-0.023" y1="0.979" x2="1.023" y2="0.021" xlink:href="#linear-gradient-3"/>
+  </defs>
+  <g id="그룹_243" data-name="그룹 243" transform="translate(-4897.338 -1424.073)">
+    <g id="사각형_52" data-name="사각형 52" transform="translate(4897.837 1424.573)">
+      <rect id="사각형_55" data-name="사각형 55" width="326" height="258.303" fill="url(#linear-gradient)"/>
+      <rect id="사각형_56" data-name="사각형 56" width="325" height="257" transform="translate(0.5 0.5)" fill="url(#linear-gradient-2)"/>
+    </g>
+    <g id="사각형_52-2" data-name="사각형 52" transform="translate(4897.338 1424.073)">
+      <path id="패스_137" data-name="패스 137" d="M5224.338,1683.376h-327v-259.3h327Zm-325.892-.805h324.783V1424.878H4898.446Z" transform="translate(-4897.338 -1424.073)" fill="url(#linear-gradient-3)"/>
+      <path id="패스_138" data-name="패스 138" d="M5223.838,1682.876h-326v-258.3h326Zm-324.891-.8h323.782V1425.378H4898.947Z" transform="translate(-4897.338 -1424.073)" fill="url(#linear-gradient-4)"/>
+    </g>
+  </g>
+</svg>

@@ -3,6 +3,7 @@ import Image from 'next/image';
 import styled from 'styled-components';
 
 import ContainerImg from "../public/images/web/Back/Background.png"
+import ContainerImgMobile from "../public/images/web/Back/Mobile_Background.png"
 
 
 import AnchorLink from 'react-anchor-link-smooth-scroll'
@@ -10,21 +11,10 @@ import Logo from "../public/images/web/Main/Logo_Fatalbomb.svg"
 import TextMain from "../public/images/web/Main/Text_Main.svg"
 import PreReservationBtn from "../public/images/web/Main/Button_booking.svg"
 import PreReservationBtnhover from "../public/images/web/Main/Button_booking_mouseover.svg"
+import MenuBtn from "../public/images/web/Main/Button_Menu_Mobile.svg"
 
-import ImageFatal from "../public/images/web/Introduction/Image_Fatal_BI.png"
-
-//캐릭터 소개
-import Characterswiper from "../component/CharacterIntro/CharacterSwiper"
-import DPSIcon from "../public/images/web/Character/Icon_DPS.svg"
-import HealerIcon from "../public/images/web/Character/Icon_Healer.svg"
-import TankerIcon from "../public/images/web/Character/Icon_Tanker.svg"
-import CharacterSkillInfo from "../public/images/web/Character/Character_Skill_Info.svg"
-import CharacterIntro from "../component/CharacterIntro/CharacterIntro"
-
-//스틸이미지
-// import IconMagnifier from "../public/images/web/Still_Image/Icon_Magnifier.svg"
-import StillImageEx from "../public/images/web/Still_Image/StillImageEx.png"
-import StillImageSwiper from "../component/StillImage/StillImageSwiper"
+//Mobile layout
+import { SCREEN_SIZE } from '../constants/screenSize';
 
 //트레일러
 import IconPlay from "../public/images/web/Trailer/Icon_Play.svg"
@@ -32,13 +22,14 @@ import TrailerTVScreen from "../public/images/web/Trailer/Trailer_TV_Screen.svg"
 import TrailerTV from "../public/images/web/Trailer/Trailer_TV.svg"
 import TrailerSwiper from "../component/Trailer/TrailerSwiper"
 
-//redux
-import { useAppSelector, RootState } from '../store'
+//Category
+import CharacterIntro from "../component/CharacterIntro/CharacterIntro"
+import StillImage from '../component/StillImage/StilImage';
+import ProjectIntro from '../component/ProjectIntro/ProjectIntro';
+
 
 export default function home() {
 
-    const stillImage = useAppSelector((state: RootState) => state.clickedCharcter.stillImage);
-    console.log(stillImage)
     //사전예약버튼 hover
     const [isHovering, setIsHovered] = useState<boolean>(false);
     const onMouseEnter = () => setIsHovered(true);
@@ -69,104 +60,138 @@ export default function home() {
     const goToTop = () => {
         window.scrollTo({ top: 0, behavior: "smooth" });
     };
+
+    //화면 resize
+    const [mobileResize, setMobileResize] = useState<number>(0);
+
+    const handleResize = () => {
+        setMobileResize(window.innerWidth);
+    };
+
+    useEffect(() => {
+        window.addEventListener("resize", handleResize);
+        return () => {
+            window.removeEventListener("resize", handleResize);
+        };
+    }, []);
+
+    
+
     return (
         <Container>
             <ContainerInner>
                 <MainContainer>
-                    <Header>
-                        <Image
-                            src={Logo}
-                            width={125}
-                            height={50}
-                            alt="head-logo"
-                        />
-                        <Anchor>
-                            <p>
-                                <AnchorLink offset='50' href='#projectintro'>프로젝트소개</AnchorLink>
+                    {mobileResize <= 480 ?
+                        <MobileHeader>
+                                <div className="mobile-header__menu"><Image src={MenuBtn} width={22} height={17} alt="menuBtn" /></div>
+                                <div className="mobile-header__logo"><Image src={Logo} width={50} height={20} alt="head-logo" /></div>
+                          
+                            {/* <Anchor>
+                                <p>
+                                    <AnchorLink offset='50' href='#projectintro'>프로젝트소개</AnchorLink>
 
-                                <AnchorLink offset='50' href='#characterintro'>캐릭터소개</AnchorLink>
+                                    <AnchorLink offset='50' href='#characterintro'>캐릭터소개</AnchorLink>
 
-                                <AnchorLink offset='50' href='#stillimage'>스틸이미지</AnchorLink>
+                                    <AnchorLink offset='50' href='#stillimage'>스틸이미지</AnchorLink>
 
-                                <AnchorLink offset='50' href='#trailer'>공식트레일러</AnchorLink>
+                                    <AnchorLink offset='50' href='#trailer'>공식트레일러</AnchorLink>
 
-                                <AnchorLink offset='50' href='#formalsns'>공식SNS</AnchorLink>
-                            </p>
-                        </Anchor>
+                                    <AnchorLink offset='50' href='#formalsns'>공식SNS</AnchorLink>
+                                </p>
+                            </Anchor> */}
+                        </MobileHeader> :
+                        <Header>
+                            <Image src={Logo} width={125} height={50} alt="head-logo" />
+                            <Anchor>
+                                <p>
+                                    <AnchorLink offset='50' href='#projectintro'>프로젝트소개</AnchorLink>
 
-                    </Header>
+                                    <AnchorLink offset='50' href='#characterintro'>캐릭터소개</AnchorLink>
+
+                                    <AnchorLink offset='50' href='#stillimage'>스틸이미지</AnchorLink>
+
+                                    <AnchorLink offset='50' href='#trailer'>공식트레일러</AnchorLink>
+
+                                    <AnchorLink offset='50' href='#formalsns'>공식SNS</AnchorLink>
+                                </p>
+                            </Anchor>
+                        </Header>}
+
 
                     <MainLogo>
-                        <Image
-                            src={Logo}
-                            width={685}
-                            height={275}
-                            alt="Logo"
-                        />
+                        {mobileResize <= 480 ?
+                            <Image src={Logo} width={240} height={80} alt="Logo" /> :
+                            <Image src={Logo} width={685} height={275} alt="Logo" />
+                        }
                     </MainLogo>
                     <MainText>
-                        <Image
-                            src={TextMain}
-                            width={482}
-                            height={116}
-                            alt="TextMain"
-                        />
+                        {mobileResize <= 480 ?
+                            <Image src={TextMain} width={240} height={60} alt="TextMain" /> :
+                            <Image src={TextMain} width={482} height={116} alt="TextMain" />
+                        }
 
                     </MainText>
-                    <PreReservationButton
-                        onMouseEnter={onMouseEnter}
-                        onMouseLeave={onMouseLeave}>
-                        {isHovering ? (
-                            <Image
-                                src={PreReservationBtnhover}
-                                width={283}
-                                height={82}
-                                alt="PreReservationBtnhover"
-                            />
-                        ) :
-                            <Image
-                                src={PreReservationBtn}
-                                width={283}
-                                height={82}
-                                alt="PreReservationBtn"
-                            />}
-                    </PreReservationButton>
-                </MainContainer>
-                <ProjectIntroContainer id="projectintro">
 
-                    <IntroText>프로젝트 소개</IntroText>
-                    <IntroTextLine />
-                    <IntroImage>
-                        <Image
-                            src={ImageFatal}
-                            width={483}
-                            height={483}
-                            alt="ImageFatal"
-                        />
-                    </IntroImage>
+                    {mobileResize <= 480 ?
+                        <PreReservationButton
+                            onMouseEnter={onMouseEnter}
+                            onMouseLeave={onMouseLeave}>
+
+                            {isHovering ? (
+                                <Image
+                                    src={PreReservationBtnhover}
+                                    width={210}
+                                    height={60}
+                                    alt="PreReservationBtnhover"
+                                />
+                            ) :
+                                <Image
+                                    src={PreReservationBtn}
+                                    width={210}
+                                    height={60}
+                                    alt="PreReservationBtn"
+                                />}
+                        </PreReservationButton> :
+
+                        <PreReservationButton
+                            onMouseEnter={onMouseEnter}
+                            onMouseLeave={onMouseLeave}>
+
+                            {isHovering ? (
+                                <Image
+                                    src={PreReservationBtnhover}
+                                    width={283}
+                                    height={82}
+                                    alt="PreReservationBtnhover"
+                                />
+                            ) :
+                                <Image
+                                    src={PreReservationBtn}
+                                    width={283}
+                                    height={82}
+                                    alt="PreReservationBtn"
+                                />}
+                        </PreReservationButton>
+                    }
+
+
+
+                </MainContainer>
+
+                <ProjectIntroContainer id="projectintro">
+                    <ProjectIntro mobileResize={mobileResize}/>
                 </ProjectIntroContainer>
 
 
                 <CharacterIntroContainer id="characterintro">
-                    <CharacterIntro />
+                    <CharacterIntro/>
                 </CharacterIntroContainer>
 
                 <StillImageContainer id="stillimage">
-          
-                    <div className="stillImage__text">스틸이미지</div>
-                    <div className="stillImage__container">
-                        <Image
-                            src={StillImageEx}
-                            width={1454}
-                            height={772}
-                            alt="StillImageEx"
-                        />
-                    </div>
-                    <div className="stillImage__text">{stillImage}</div>
-                    <StillImageSwiper />
+                    <StillImage />
                 </StillImageContainer>
 
-                <TrailerContainer id="trailer">
+                {/* <TrailerContainer id="trailer">
                     <div className="trailer__text">공식 트레일러</div>
                     <div className="trailer__trailerTv">
                         <div className="trailer__trailerTvScreen">
@@ -177,14 +202,14 @@ export default function home() {
                                 alt="TrailerTVScreen"
                             />
                         </div>
-                        {/* <div className="trailer__iconPlay">
+                        <div className="trailer__iconPlay">
                             <Image
                                 src={IconPlay}
                                 width={122}
                                 height={122}
                                 alt="IconPlay"
                             />
-                        </div> */}
+                        </div>
 
                         <Image
                             src={TrailerTV}
@@ -195,9 +220,9 @@ export default function home() {
                     </div>
                     <TrailerSwiper />
 
-                </TrailerContainer>
+                </TrailerContainer> */}
 
-                <FormalSnsContainer id="formalsns">
+                {/* <FormalSnsContainer id="formalsns">
                     <div style={{ width: "456px", height: "184px", marginRight: "auto", marginLeft: "auto", paddingTop: "500px" }}>
                         <Image
                             src={Logo}
@@ -206,7 +231,7 @@ export default function home() {
                             alt="Logo"
                         />
                     </div>
-                </FormalSnsContainer>
+                </FormalSnsContainer> */}
 
 
                 {toggleBtn ? (
@@ -217,12 +242,21 @@ export default function home() {
 
 
             </ContainerInner>
-            <Image
-                src={ContainerImg}
-                width={1920}
-                height={9765}
-                alt="ContainerImg"
-            />
+            {mobileResize <= 480 ?
+                <Image
+                    src={ContainerImgMobile}
+                    width={390}
+                    height={3415}
+                    alt="ContainerImgMobile"
+                /> :
+                <Image
+                    src={ContainerImg}
+                    width={1920}
+                    height={9765}
+                    alt="ContainerImg"
+                />}
+
+
         </Container>
     )
 }
@@ -234,6 +268,14 @@ const Container = styled.div`
     display: flex;
     flex-direction: column;
     position: relative;
+    @media screen and (max-width: ${SCREEN_SIZE.WIDTH.MOBILE}) {
+        width: 100%;
+        height: 3415px;
+        overflow: scroll;
+        ::-webkit-scrollbar {
+          display: none;
+        }
+    }
 `
 
 const ContainerInner = styled.div`
@@ -245,6 +287,35 @@ const ContainerInner = styled.div`
 const MainContainer = styled.div`
     width: 100%;
     height: 1080px;
+    @media screen and (max-width: ${SCREEN_SIZE.WIDTH.MOBILE}) {
+        height: 320px;
+    }
+`
+const MobileHeader = styled.div`
+    width: 100%;
+    height: 46px;
+    border-bottom: 1px solid #FFFFD180;
+    background: #000 0% 0% no-repeat padding-box;
+    opacity: 0.7;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    display: flex;
+    position: relative;
+    .mobile-header__menu {
+        width: 100%;
+        position: absolute;
+        display: flex;
+        padding-left: 24px;
+        margin-top: 14.5px;
+        
+    }
+    .mobile-header__logo {
+        width: 100%;
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        margin-top: 12.5px;
+    }
 `
 const Header = styled.div`
     display: flex;
@@ -254,7 +325,7 @@ const Header = styled.div`
 `
 
 const Anchor = styled.div`
-    width: 858px;
+    width: 60%;
     height: 25px;
     margin-left: 255px;
 
@@ -276,51 +347,58 @@ const Anchor = styled.div`
 const MainLogo = styled.div`
     margin-left: 984px;
     margin-top: 150px;
+    @media screen and (max-width: ${SCREEN_SIZE.WIDTH.MOBILE}) {
+        margin-left: 0px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-top: 50px;
+    }
 `
 
 const MainText = styled.div`
     margin-left: 1085px;
     margin-top: 63px;
+    @media screen and (max-width: ${SCREEN_SIZE.WIDTH.MOBILE}) {
+        margin-left: 0px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-top: 30px;
+    }
 `
 
 const PreReservationButton = styled.div`
     margin-left: 1183px;
     margin-top: 50px;
     cursor: pointer;
+    @media screen and (max-width: ${SCREEN_SIZE.WIDTH.MOBILE}) {
+        margin-left: 0px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-top: 52px;
+    }
 `
+
+
 //프로젝트 소개 컨테이너
 const ProjectIntroContainer = styled.div`
     width: 100%;
     height: 940px;
+    @media screen and (max-width: ${SCREEN_SIZE.WIDTH.MOBILE}) {
+        height: 440px;
+    }
 `
 
-const IntroImage = styled.div`
-    margin-top: 335px;
-    margin-left: 1307px;
-`
-const IntroText = styled.div`
-    text-align: left;
-    font: normal normal bold 32px/40px NanumSquare_ac;
-    letter-spacing: 0px;
-    color: #FFFFFF;
-    opacity: 1;
-    margin-left: 325px;
-    margin-top: 103px;
-    opacity: 0.9;
-`
-const IntroTextLine = styled.div`
-    width: 549px;
-    height: 3px;
-    margin-left: 275px;
-    background: transparent linear-gradient(90deg, #FCEED300 0%, #FCEED334 5%, #FCEED37B 11%, #FCEED3B4 17%, #FCEED3DD 23%, #FCEED3F6 27%, #FCEED3 29%, #FCEED3E6 34%, #FCEED396 53%, #FCEED355 69%, #FCEED327 83%, #FCEED30B 93%, #FCEED300 99%) 0% 0% no-repeat padding-box;
-    opacity: 1;
-    filter: blur(1px);
-`
 
 //캐릭터 소개 컨테이너
 const CharacterIntroContainer = styled.div`
     width: 100%;
     height: 1080px;
+    @media screen and (max-width: ${SCREEN_SIZE.WIDTH.MOBILE}) {
+        height: 874px;
+    }
 `
 
 //스틸 이미지 
@@ -328,20 +406,8 @@ const CharacterIntroContainer = styled.div`
 const StillImageContainer = styled.div`
     width: 100%;
     height: 1080px;
-
-    .stillImage__text {
-        margin-left: 261px;
-        font: normal normal normal 20px NanumSquare_ac;
-        letter-spacing: 0px;
-        color: #FFFFFF;
-        opacity: 0.9;
-    }
-    .stillImage__container {
-        margin-top: 25px;
-        width: 1454px;
-        height: 772px;
-        margin-right: auto;
-        margin-left: auto;
+    @media screen and (max-width: ${SCREEN_SIZE.WIDTH.MOBILE}) {
+        height: 874px;
     }
 `
 
@@ -381,10 +447,16 @@ const TrailerContainer = styled.div`
         }
 
     }
+    @media screen and (max-width: ${SCREEN_SIZE.WIDTH.MOBILE}) {
+        height: 220px;
+    }
 `
 const FormalSnsContainer = styled.div`
     width: 100%;
     height: 1080px;
+    @media screen and (max-width: ${SCREEN_SIZE.WIDTH.MOBILE}) {
+        height: 220px;
+    }
 `
 
 const GotoTop = styled.div`
@@ -405,3 +477,12 @@ const GotoTop = styled.div`
   align-items: center;
   cursor: pointer;
 `
+
+// @media screen and (max-width: ${SCREEN_SIZE.WIDTH.MOBILE}) {
+//     width: 80%;
+//     min-width: 90%;
+//     height: 80vh;
+//     float: none;
+//     animation: ${(props) => (props.product ? fadeIn : fadeOut)} 0.6s;
+//   }
+// 미디어 스크린
