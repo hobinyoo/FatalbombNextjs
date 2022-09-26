@@ -14,7 +14,7 @@ interface mobileResizeProps {
 
 const ProjectIntro = ({mobileResize}: mobileResizeProps) => {
 
-    console.log(mobileResize)
+
     return (
         <>
             

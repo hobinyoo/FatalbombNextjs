@@ -407,7 +407,7 @@ const StillImageContainer = styled.div`
     width: 100%;
     height: 1080px;
     @media screen and (max-width: ${SCREEN_SIZE.WIDTH.MOBILE}) {
-        height: 874px;
+        height: 397px;
     }
 `
 

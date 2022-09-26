@@ -59,13 +59,21 @@ const StillImage = () => {
 //스틸 이미지 
 
 const StillImageContainer = styled.div`
-
+    width: 100%
+    
     .stillImage__text {
         margin-left: 261px;
         font: normal normal normal 20px NanumSquare_ac;
         letter-spacing: 0px;
         color: #FFFFFF;
         opacity: 0.9;
+        @media screen and (max-width: ${SCREEN_SIZE.WIDTH.MOBILE}) {
+            margin-left: 0px;
+            width: 100%
+            display: flex;
+            justify-content: center;
+            font: normal normal normal 16px NanumSquare_ac;
+        }
     }
     .stillImage__container {
         margin-top: 25px;
