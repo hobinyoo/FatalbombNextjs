@@ -20,7 +20,7 @@ interface mobileResizeProps {
 }
 
 const Trailer = () => {
-
+    console.log("test")
     const trailer = useAppSelector((state: RootState) => state.clickedSwiper.trailer);
 
     //화면 resize
