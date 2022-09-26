@@ -15,7 +15,7 @@ import 'swiper/swiper-bundle.min.css';
 
 //redux
 import { useAppDispatch } from '../../store'
-import { clickedCharcter } from "../../store/features/clickedCharcterSlice"
+import { clickedCharcter } from "../../store/features/clickedSwiperSlice"
 import { useAppSelector, RootState } from '../../store'
 
 //Mobile layout
@@ -48,7 +48,7 @@ const Characterswiper = () => {
 
     // const swiper = useRef() as any;
 
-    const selectedCharcter = useAppSelector((state: RootState) => state.clickedCharcter.value);
+    const selectedCharcter = useAppSelector((state: RootState) => state.clickedSwiper.value);
 
     useEffect(() => {
         if (!swiperSetting) {
@@ -62,8 +62,8 @@ const Characterswiper = () => {
                 // swiper가 제공해주는 onClick 이벤트 리스너
                 onClick: (swiper: SwiperCore): void => {
                     const characterName = swiper.clickedSlide.id
-
                     dispatch(clickedCharcter(characterName))
+                    swiper.slideTo(1)
                 },
                 scrollbar: { draggable: true, el: null },
                 slidesPerView: 3,
@@ -88,8 +88,8 @@ const Characterswiper = () => {
                 <ArrowBtn ref={prevRef}>
                     <Image
                         src={ArrowLeft}
-                        width={30}
-                        height={40}
+                        width={16}
+                        height={22}
                         alt="ArrowLeft"
                     />
                 </ArrowBtn>
@@ -97,43 +97,27 @@ const Characterswiper = () => {
                     <Swiper {...swiperSetting}>
                         <SwiperSlide id="IDOL">
                             {selectedCharcter === "IDOL" ?
-                                <SelectedcharcterContainer>
-                                    <Selectedcharcter />
-                                </SelectedcharcterContainer> :
-                                <CharacterContainer>
-                                    <CharacterIdol />
-                                </CharacterContainer>
+                                <Selectedcharcter /> :
+                                <CharacterIdol />
                             }
                         </SwiperSlide>
 
                         <SwiperSlide id="NURSE">
                             {selectedCharcter === "NURSE" ?
-                                <SelectedcharcterContainer>
-                                    <Selectedcharcter />
-                                </SelectedcharcterContainer> :
-                                <CharacterContainer>
-                                    <CharacterIdol />
-                                </CharacterContainer>
+                                <Selectedcharcter /> :
+                                <CharacterIdol />
                             }
                         </SwiperSlide>
                         <SwiperSlide id="ENGINEER">
                             {selectedCharcter === "ENGINEER" ?
-                                <SelectedcharcterContainer>
-                                    <Selectedcharcter />
-                                </SelectedcharcterContainer> :
-                                <CharacterContainer>
-                                    <CharacterIdol />
-                                </CharacterContainer>
+                                <Selectedcharcter /> :
+                                <CharacterIdol />
                             }
                         </SwiperSlide>
                         <SwiperSlide id="COURIER">
                             {selectedCharcter === "COURIER" ?
-                                <SelectedcharcterContainer>
-                                    <Selectedcharcter />
-                                </SelectedcharcterContainer> :
-                                <CharacterContainer>
-                                    <CharacterIdol />
-                                </CharacterContainer>
+                                <Selectedcharcter /> :
+                                <div style={{width:"100px", height:"120px"}}><CharacterIdol /></div>
                             }
                         </SwiperSlide>
                     </Swiper>
@@ -141,8 +125,8 @@ const Characterswiper = () => {
                 <ArrowBtn ref={nextRef}>
                     <Image
                         src={ArrowRight}
-                        width={30}
-                        height={40}
+                        width={16}
+                        height={22}
                         alt="ArrowRight"
                     />
                 </ArrowBtn>
@@ -153,23 +137,29 @@ const Characterswiper = () => {
 }
 
 
-
 const StyledRoot = styled.div`
     width: 100%;
     display: flex;
     justify-content: center;
-    margin-top: 37px;
+    margin-top: 30px;
+    z-index: 0;
 	.swiper {
     		&-wrapper,
     		&-container {
+                
       			width: 832px;
                 height: 320px;
       			margin: 0;
                   @media screen and (max-width: ${SCREEN_SIZE.WIDTH.MOBILE}) {
-                    width: 300px;
-                    height: 146px;
+                    width: 100%;
+                    height: 180px;
                 }
     		}
+            &-button-next::after,
+            &-button-prev::after {
+              display: none;
+              z-index: 0;
+            }
 `;
 
 const ArrowBtn = styled.button`
@@ -178,65 +168,25 @@ const ArrowBtn = styled.button`
     box-shadow:none; 
     overflow:visible;
     cursor:pointer;
-    margin-top: -47px;
+    z-index: 0;
 `
-
-//margin-left: 10.5px 208-187/2 
-const CharacterContainer = styled.div`
-    position: relative;
-    width: 70px;
-    height: 120px;
-    cursor: pointer;
-    margin-left: 10.5px; 
-    &:hover {
-        transition: 200ms all;
-        width: 70px;
-        height: 120px;
-        }
-  `
 
 const CharacterIdol = styled.div`
-    display: flex;
-    width: 100%;
-    height: 100%;
-    margin: auto;
-    position: absolute;
-    z-index: 1;
-    background-image: url('images/web/Character/Charcter_Idol.png');
+    width: 102px;
+    height: 146px;
+    background-image: url('images/web/Character/Box_CharacterInfo.png');
     background-size: cover;
     background-position: center center;
-    margin-top: 7px;
-    &:hover {
-        transition: 200ms all;
-        background-image: url('images/web/Character/Charcter_Engineer.png');
-        background-size: cover;
-        background-position: center center;
-        width: 70px;
-        height: 120px;
-        z-index: 1;
-        transform: translate(-5.25px, -7px)
-      }
-    
 `
-const SelectedcharcterContainer = styled.div`
-    position: relative;
-    width: 75px;
-    height: 120px;
-    cursor: pointer;
-    margin-left: 10.5px; 
-`
+
 const Selectedcharcter = styled.div`
-    display: flex;
-    width: 100%;
-    height: 100%;
-    margin: auto;
-    position: absolute;
-    z-index: 1;
-    background-image: url('images/web/Character/Charcter_Engineer.png');
+    width: 116px;
+    height: 166px;
+    background-image: url('images/web/Character/Box_CharacterInfo.png');
     background-size: cover;
     background-position: center center;
-    margin-top: 7px;     
-    transform: translate(-5.25px, -7px)
+    z-index: 1;
+    margin-left: -1px;
 `
 
 

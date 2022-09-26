@@ -15,7 +15,7 @@ import 'swiper/swiper-bundle.min.css';
 
 //redux
 import { useAppDispatch } from '../../store'
-import { clickedCharcter } from "../../store/features/clickedCharcterSlice"
+import { clickedCharcter } from "../../store/features/clickedSwiperSlice"
 import { useAppSelector, RootState } from '../../store'
 
 //Mobile layout
@@ -34,7 +34,7 @@ const Characterswiper = () => {
 
     // const swiper = useRef() as any;
 
-    const selectedCharcter = useAppSelector((state: RootState) => state.clickedCharcter.value);
+    const selectedCharcter = useAppSelector((state: RootState) => state.clickedSwiper.value);
 
     useEffect(() => {
         if (!swiperSetting) {

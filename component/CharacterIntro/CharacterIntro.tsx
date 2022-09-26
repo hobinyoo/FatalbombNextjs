@@ -33,7 +33,7 @@ export default function CharacterInfo() {
     const onMouseEnter = () => setIsHovered(true);
     const onMouseLeave = () => setIsHovered(false);
 
-    const clickedCharcter = useAppSelector((state: RootState) => state.clickedCharcter.value);
+    const clickedCharcter = useAppSelector((state: RootState) => state.clickedSwiper.value);
     const CHARCTERNAME = ["IDOL", "NURSE", "ENGINEER", "COURIER"]
 
     //화면 resize
@@ -68,8 +68,8 @@ export default function CharacterInfo() {
                     {clickedCharcter === "IDOL" || clickedCharcter === "COURIER" ?
                         <Image
                             src={SelectedDPSIcon}
-                            width={36}
-                            height={36}
+                            width={42}
+                            height={42}
                             alt="SelectedDPSIcon"
                         /> :
                         <Image
