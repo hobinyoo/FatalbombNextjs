@@ -14,9 +14,13 @@ import { SCREEN_SIZE } from '../../constants/screenSize';
 //redux
 import { useAppSelector, RootState } from '../../store'
 
+interface mobileResizeProps {
+    mobileResize: number;
+}
+
 const StillImage = () => {
 
-    const stillImage = useAppSelector((state: RootState) => state.clickedCharcter.stillImage);
+    const stillImage = useAppSelector((state: RootState) => state.clickedSwiper.stillImage);
 
     //화면 resize
     const [mobileResize, setMobileResize] = useState<number>(0);
@@ -32,14 +36,14 @@ const StillImage = () => {
     }, [mobileResize]);
 
     return (
-        <StillImageContainer>
+        <StillImageContainer mobileResize={mobileResize}>
             <div className="stillImage__text">스틸이미지</div>
             <div className="stillImage__container">
                 {mobileResize <= 480 ?
                     <Image
                         src={StillImageEx}
-                        width={350}
-                        height={170}
+                        width={346}
+                        height={203}
                         alt="StillImageEx"
                     /> : <Image
                         src={StillImageEx}
@@ -50,7 +54,7 @@ const StillImage = () => {
 
             </div>
             <div className="stillImage__text">{stillImage}</div>
-            <StillImageSwiper />
+            <StillImageSwiper mobileResize={mobileResize}/>
         </StillImageContainer>
     )
 
@@ -58,18 +62,17 @@ const StillImage = () => {
 
 //스틸 이미지 
 
-const StillImageContainer = styled.div`
-    width: 100%
+const StillImageContainer = styled.div<mobileResizeProps>`
+    width: 100%;
     
     .stillImage__text {
-        margin-left: 261px;
+        margin-left: ${props=>props.mobileResize >= 1920 ? "261px" : null};
         font: normal normal normal 20px NanumSquare_ac;
         letter-spacing: 0px;
         color: #FFFFFF;
         opacity: 0.9;
         @media screen and (max-width: ${SCREEN_SIZE.WIDTH.MOBILE}) {
-            margin-left: 0px;
-            width: 100%
+            width: 100%;
             display: flex;
             justify-content: center;
             font: normal normal normal 16px NanumSquare_ac;
@@ -82,13 +85,10 @@ const StillImageContainer = styled.div`
         margin-right: auto;
         margin-left: auto;
         @media screen and (max-width: ${SCREEN_SIZE.WIDTH.MOBILE}) {
-            margin-top: 390px;
+            margin-top: 19px;
             width: 350px;
-            height: 170px;
+            height: 203px;
         }
-    }
-    @media screen and (max-width: ${SCREEN_SIZE.WIDTH.MOBILE}) {
-        height: 220px;
     }
 `
 

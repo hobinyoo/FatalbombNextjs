@@ -16,17 +16,12 @@ import MenuBtn from "../public/images/web/Main/Button_Menu_Mobile.svg"
 //Mobile layout
 import { SCREEN_SIZE } from '../constants/screenSize';
 
-//트레일러
-import IconPlay from "../public/images/web/Trailer/Icon_Play.svg"
-import TrailerTVScreen from "../public/images/web/Trailer/Trailer_TV_Screen.svg"
-import TrailerTV from "../public/images/web/Trailer/Trailer_TV.svg"
-import TrailerSwiper from "../component/Trailer/TrailerSwiper"
 
 //Category
 import CharacterIntro from "../component/CharacterIntro/CharacterIntro"
 import StillImage from '../component/StillImage/StilImage';
 import ProjectIntro from '../component/ProjectIntro/ProjectIntro';
-
+import Trailer from '../component/Trailer/Trailer';
 
 export default function home() {
 
@@ -75,7 +70,7 @@ export default function home() {
         };
     }, []);
 
-    
+
 
     return (
         <Container>
@@ -83,9 +78,9 @@ export default function home() {
                 <MainContainer>
                     {mobileResize <= 480 ?
                         <MobileHeader>
-                                <div className="mobile-header__menu"><Image src={MenuBtn} width={22} height={17} alt="menuBtn" /></div>
-                                <div className="mobile-header__logo"><Image src={Logo} width={50} height={20} alt="head-logo" /></div>
-                          
+                            <div className="mobile-header__menu"><Image src={MenuBtn} width={22} height={17} alt="menuBtn" /></div>
+                            <div className="mobile-header__logo"><Image src={Logo} width={50} height={20} alt="head-logo" /></div>
+
                             {/* <Anchor>
                                 <p>
                                     <AnchorLink offset='50' href='#projectintro'>프로젝트소개</AnchorLink>
@@ -179,59 +174,43 @@ export default function home() {
                 </MainContainer>
 
                 <ProjectIntroContainer id="projectintro">
-                    <ProjectIntro mobileResize={mobileResize}/>
+                    <ProjectIntro mobileResize={mobileResize} />
                 </ProjectIntroContainer>
 
 
                 <CharacterIntroContainer id="characterintro">
-                    <CharacterIntro/>
+                    <CharacterIntro />
                 </CharacterIntroContainer>
 
                 <StillImageContainer id="stillimage">
                     <StillImage />
                 </StillImageContainer>
 
-                {/* <TrailerContainer id="trailer">
-                    <div className="trailer__text">공식 트레일러</div>
-                    <div className="trailer__trailerTv">
-                        <div className="trailer__trailerTvScreen">
+                <TrailerContainer id="trailer">
+                    <Trailer />
+
+                </TrailerContainer>
+
+                <FormalSnsContainer id="formalsns">
+                    {mobileResize <= 480 ?
+                        <div style={{ width: "280px", height: "180", marginRight: "auto", marginLeft: "auto"}}>
                             <Image
-                                src={TrailerTVScreen}
-                                width={912}
-                                height={577}
-                                alt="TrailerTVScreen"
+                                src={Logo}
+                                width={280}
+                                height={180}
+                                alt="Logo"
                             />
-                        </div>
-                        <div className="trailer__iconPlay">
+                        </div> :
+                        <div style={{ width: "456px", height: "184px", marginRight: "auto", marginLeft: "auto", paddingTop: "500px" }}>
                             <Image
-                                src={IconPlay}
-                                width={122}
-                                height={122}
-                                alt="IconPlay"
+                                src={Logo}
+                                width={456}
+                                height={184}
+                                alt="Logo"
                             />
-                        </div>
+                        </div>}
 
-                        <Image
-                            src={TrailerTV}
-                            width={1214}
-                            height={816}
-                            alt="TrailerTV"
-                        />
-                    </div>
-                    <TrailerSwiper />
-
-                </TrailerContainer> */}
-
-                {/* <FormalSnsContainer id="formalsns">
-                    <div style={{ width: "456px", height: "184px", marginRight: "auto", marginLeft: "auto", paddingTop: "500px" }}>
-                        <Image
-                            src={Logo}
-                            width={456}
-                            height={184}
-                            alt="Logo"
-                        />
-                    </div>
-                </FormalSnsContainer> */}
+                </FormalSnsContainer>
 
 
                 {toggleBtn ? (
@@ -381,7 +360,6 @@ const PreReservationButton = styled.div`
     }
 `
 
-
 //프로젝트 소개 컨테이너
 const ProjectIntroContainer = styled.div`
     width: 100%;
@@ -390,7 +368,6 @@ const ProjectIntroContainer = styled.div`
         height: 440px;
     }
 `
-
 
 //캐릭터 소개 컨테이너
 const CharacterIntroContainer = styled.div`
@@ -415,40 +392,8 @@ const StillImageContainer = styled.div`
 const TrailerContainer = styled.div`
     width: 100%;
     height: 1080px;
-    
-    .trailer__text {
-        margin-top: 360px;
-
-        width: 290px;
-        height: 44px;
-        text-align: center;
-        font: normal normal bold 38px NanumSquare_ac;
-        letter-spacing: 0px;
-        color: #FFFFD1;
-        opacity: 1;
-        margin-right: auto;
-        margin-left: auto;
-    }
-
-    .trailer__trailerTv {
-        position: relative;
-        width: 1214px;
-        height: 816px;
-        margin-right: auto;
-        margin-left: auto;
-
-        .trailer__trailerTvScreen {
-            position: absolute;
-            width: 912px;
-            height: 577px;
-            z-index: 1;
-            margin-left: 167px;
-            margin-top: 145px;
-        }
-
-    }
     @media screen and (max-width: ${SCREEN_SIZE.WIDTH.MOBILE}) {
-        height: 220px;
+        height: 495px;
     }
 `
 const FormalSnsContainer = styled.div`

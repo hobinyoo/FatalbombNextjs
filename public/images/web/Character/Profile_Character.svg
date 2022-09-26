@@ -1,0 +1,54 @@
+
+  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="213" height="307" viewBox="0 0 213 307">
+    <defs>
+      <style>
+        .cls-1 {
+          fill: url(#linear-gradient);
+        }
+  
+        .cls-2 {
+          fill: url(#linear-gradient-2);
+        }
+  
+        .cls-3, .cls-4 {
+          stroke: none;
+        }
+  
+        .cls-4 {
+          fill: #b3b3b3;
+        }
+      </style>
+      <linearGradient id="linear-gradient" x1="0.5" y1="1" x2="0.5" gradientUnits="objectBoundingBox">
+        <stop offset="0.074" stop-color="#8b2a72"/>
+        <stop offset="0.181" stop-color="#742c67"/>
+        <stop offset="0.345" stop-color="#59305a"/>
+        <stop offset="0.511" stop-color="#453250"/>
+        <stop offset="0.678" stop-color="#39344a"/>
+        <stop offset="0.848" stop-color="#363549"/>
+      </linearGradient>
+      <linearGradient id="linear-gradient-2" y1="0.5" x2="1" y2="0.5" gradientUnits="objectBoundingBox">
+        <stop offset="0" stop-color="#fceed3" stop-opacity="0"/>
+        <stop offset="0.082" stop-color="#fceed3" stop-opacity="0.204"/>
+        <stop offset="0.204" stop-color="#fceed3" stop-opacity="0.482"/>
+        <stop offset="0.314" stop-color="#fceed3" stop-opacity="0.706"/>
+        <stop offset="0.408" stop-color="#fceed3" stop-opacity="0.867"/>
+        <stop offset="0.482" stop-color="#fceed3" stop-opacity="0.965"/>
+        <stop offset="0.527" stop-color="#fceed3"/>
+        <stop offset="0.562" stop-color="#fceed3" stop-opacity="0.902"/>
+        <stop offset="0.684" stop-color="#fceed3" stop-opacity="0.588"/>
+        <stop offset="0.793" stop-color="#fceed3" stop-opacity="0.333"/>
+        <stop offset="0.884" stop-color="#fceed3" stop-opacity="0.153"/>
+        <stop offset="0.954" stop-color="#fceed3" stop-opacity="0.043"/>
+        <stop offset="0.995" stop-color="#fceed3" stop-opacity="0"/>
+      </linearGradient>
+    </defs>
+    <g id="그룹_192" data-name="그룹 192" transform="translate(-5542 4242)">
+      <g id="패스_55" data-name="패스 55" class="cls-1" transform="translate(7600.858 -5224.417)">
+        <path class="cls-3" d="M -1896.962036132813 1288.41650390625 L -2041.726928710938 1288.41650390625 L -2057.793212890625 1269.13916015625 L -2007.754272460938 983.4165649414063 L -1862.989013671875 983.4165649414063 L -1846.923095703125 1002.693969726563 L -1896.962036132813 1288.41650390625 Z"/>
+        <path class="cls-4" d="M -2006.914184570313 984.41650390625 L -2056.728271484375 1268.85498046875 L -2041.258666992188 1287.41650390625 L -1897.802124023438 1287.41650390625 L -1847.988037109375 1002.978149414063 L -1863.457275390625 984.41650390625 L -2006.914184570313 984.41650390625 M -2008.594360351563 982.41650390625 L -1862.520629882813 982.41650390625 L -1845.858154296875 1002.409912109375 L -1896.121948242188 1289.41650390625 L -2042.1953125 1289.41650390625 L -2058.858154296875 1269.423217773438 L -2008.594360351563 982.41650390625 Z"/>
+      </g>
+      <path id="패스_132" data-name="패스 132" class="cls-2" d="M-2937.676,406.414h-144.716a.991.991,0,0,1-.761-.358l-16.507-19.864a1,1,0,0,1-.215-.808l49.8-285.148a.99.99,0,0,1,.975-.823h144.716a.989.989,0,0,1,.761.358l16.507,19.863a.993.993,0,0,1,.215.808l-49.8,285.149A.992.992,0,0,1-2937.676,406.414Zm-144.251-1.987h143.419l49.573-283.874-15.916-19.152h-143.42l-49.573,283.874Z" transform="translate(8641.89 -4341.414)"/>
+    </g>
+  </svg>
+
+</

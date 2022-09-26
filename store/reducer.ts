@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux';
 import { HYDRATE } from 'next-redux-wrapper';
 import counterSlice from './features/counterSlice';
-import clickedCharcterSlice from "./features/clickedCharcterSlice"
+import clickedSwiperSlice from "./features/clickedSwiperSlice"
 
 const combinedReducer = combineReducers({
     counter: counterSlice,
-    clickedCharcter: clickedCharcterSlice,    
+    clickedSwiper: clickedSwiperSlice,    
 });
 
 const rootReducer: typeof combinedReducer = (state, action) => {
